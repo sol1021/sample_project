@@ -10,9 +10,10 @@
     <h1 th:text="${text}"></h1>
     <div id="map" style="width: 900px; height: 600px"></div>
   </body>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8b25b63bf85281915cc08d82dc670fa"></script>
+  <!--<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8b25b63bf85281915cc08d82dc670fa"></script>-->
   <script type="text/javascript" th:inline="javascript">
     console.log("hello");
   </script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8b25b63bf85281915cc08d82dc670fa&libraries=services"></script>
   <script type="text/javascript" src="/js/kakao_map.js"></script>
 </html>
