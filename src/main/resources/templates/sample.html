@@ -4,10 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sample</title>
+    <th:block th:replace="fragments/nav :: fragment-nav"></th:block>
   </head>
   <body>
     <h1 th:text="${title}">Todo View Page</h1>
-    <div id="map" style="width: 500px; height: 400px"></div>
+    <!--<div id="map" style="width: 500px; height: 400px"></div>-->
   </body>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8b25b63bf85281915cc08d82dc670fa"></script>
   <script type="text/javascript" th:inline="javascript">
