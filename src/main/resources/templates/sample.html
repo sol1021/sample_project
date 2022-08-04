@@ -7,20 +7,12 @@
     <th:block th:replace="fragments/nav :: fragment-nav"></th:block>
   </head>
   <body>
-    <h1 th:text="${title}">Todo View Page</h1>
-    <!--<div id="map" style="width: 500px; height: 400px"></div>-->
+    <h1 th:text="${text}"></h1>
+    <div id="map" style="width: 500px; height: 400px"></div>
   </body>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8b25b63bf85281915cc08d82dc670fa"></script>
   <script type="text/javascript" th:inline="javascript">
     console.log("hello");
-    var container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
-    var options = {
-      //지도를 생성할 때 필요한 기본 옵션
-      center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-      level: 3, //지도의 레벨(확대, 축소 정도)
-    };
-
-    var map = new kakao.maps.Map(container, options);
   </script>
-  <script type="text/javascript" src="/js/hello.js"></script>
+  <script type="text/javascript" src="/js/kakao_map.js"></script>
 </html>

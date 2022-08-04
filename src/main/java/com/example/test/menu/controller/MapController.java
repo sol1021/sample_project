@@ -6,11 +6,11 @@ import org.springframework.ui.Model;
 
 
 @Controller
-public class TodoController {
+public class MapController {
 	
-	@GetMapping("/todo")
+	@GetMapping("/map")
 	public String todo(Model model){
-        model.addAttribute("title","Todo!!");
+        model.addAttribute("text","지도");
         return "sample";
     }
 }
