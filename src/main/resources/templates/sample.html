@@ -10,9 +10,26 @@
   <body>
     <h1 th:text="${text}"></h1>
     <div class="container">
-      <div id="map" style="width: 900px; height: 600px"></div>
+      <div id="map" style="width: 900px; height: 600px" class=""></div>
       <div class="box">
         <h2 class="address"></h2>
+        <div id="weather">
+          <span></span>
+          <span></span>
+        </div>
+        <button class="openBtn">후기 등록</button>
+        <div class="modal hidden">
+          <div class="bg"></div>
+          <div class="modalBox">
+            <p>모달창</p>
+            <span class="star">
+              ★★★★★
+              <span>★★★★★</span>
+              <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10" />
+            </span>
+            <button class="closeBtn">x</button>
+          </div>
+        </div>
       </div>
     </div>
   </body>
@@ -22,4 +39,5 @@
   </script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8b25b63bf85281915cc08d82dc670fa&libraries=services"></script>
   <script type="text/javascript" src="/js/kakao_map.js"></script>
+  <script type="text/javascript" src="/js/modal.js"></script>
 </html>

@@ -8,51 +8,6 @@ var options = {
 const addr = document.querySelector(".address");
 
 var map = new kakao.maps.Map(container, options);
-/*
-// 지도를 클릭한 위치에 표출할 마커입니다
-var marker = new kakao.maps.Marker({
-  // 지도 중심좌표에 마커를 생성합니다
-  position: map.getCenter(),
-});
-// 지도에 마커를 표시합니다
-marker.setMap(map);
-
-// 지도에 클릭 이벤트를 등록합니다
-// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-kakao.maps.event.addListener(map, "click", function (mouseEvent) {
-  // 클릭한 위도, 경도 정보를 가져옵니다
-  var latlng = mouseEvent.latLng;
-
-  // 마커 위치를 클릭한 위치로 옮깁니다
-  marker.setPosition(latlng);
-});
-
-var geocoder = new kakao.maps.services.Geocoder();
-
- 주소로 좌표를 검색합니다
-geocoder.addressSearch("제주특별자치도 제주시 첨단로 242", function (result, status) {
-  // 정상적으로 검색이 완료됐으면
-  if (status === kakao.maps.services.Status.OK) {
-    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-    // 결과값으로 받은 위치를 마커로 표시합니다
-    var marker = new kakao.maps.Marker({
-      map: map,
-      position: coords,
-    });
-
-    // 인포윈도우로 장소에 대한 설명을 표시합니다
-    var infowindow = new kakao.maps.InfoWindow({
-      content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>',
-    });
-    infowindow.open(map, marker);
-
-    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-    map.setCenter(coords);
-  }
-});*/
-
-// 장소 검색 객체를 생성합니다
 
 var ps = new kakao.maps.services.Places();
 
@@ -95,6 +50,28 @@ function displayMarker(place) {
     // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
     infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + "</div>");
     infowindow.open(map, marker);
-    addr.innerText = place.place_name + "y = " + place.y + "x = " + place.x;
+    addr.innerText = place.place_name;
+    onGeoOk(place);
   });
+}
+
+const API_KEY = "4b9f4e1738c30bd5406c5895a6548cd9";
+
+function onGeoOk(position) {
+  const lat = position.y;
+  const lng = position.x;
+  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`;
+  console.log(url);
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      const weather = document.querySelector("#weather span:first-child");
+      const city = document.querySelector("#weather span:last-child");
+      city.innerText = data.name;
+      weather.innerText = `${data.weather[0].main} / ${data.main.temp}`;
+    });
+}
+
+function onGeoError() {
+  alert("Can't find you. No weather for you.");
 }
